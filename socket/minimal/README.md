@@ -2,31 +2,31 @@
 
 Requisição feita pelo insomnia
 
-![Alt text](image.png)
+![Alt text](static/image.png)
 
 Saida do arquivo
 
-![Alt text](image-1.png)
+![Alt text](static/image-1.png)
 
 
 Requisição feita pelo navegador
 
-![Alt text](image-2.png)
+![Alt text](static/image-2.png)
 
 Saida do arquivo
 
-![Alt text](image-3.png)
+![Alt text](static/image-3.png)
 
 
 ## Prevejo a necessidade de ler a requisição e transformar isso em um objeto
 
 Foi feito um teste com o body e methodo POST
 
-![Alt text](image-4.png)
+![Alt text](static/image-4.png)
 
 Saida do arquivo
 
-![Alt text](image-5.png)
+![Alt text](static/image-5.png)
 
 
 Foi observado algumas coisas como:
@@ -46,7 +46,7 @@ Content-Length: 21                // descartável
 
 Então teríamos:
 
-![Alt text](image-6.png)
+![Alt text](static/image-6.png)
 
 
 Lista de mimetypes

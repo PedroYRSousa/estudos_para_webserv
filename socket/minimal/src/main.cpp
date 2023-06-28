@@ -22,8 +22,8 @@
 #include <unistd.h>
 
 // Sequencia
-// socket -> bind -> listen -> accept -> send -> close
-
+// socket -> setsockopt -> bind -> listen -> accept -> send -> close
+// https://www.geeksforgeeks.org/socket-programming-cc/
 int main(void)
 {
   int server_fd, new_socket, valread;
