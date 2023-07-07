@@ -25,8 +25,6 @@ TEST_OBJ				:=	$(patsubst $(SRC_DIR)/%.cpp,${TEST_DIR}/$(OBJ_DIR)/%.o,$(TEST_SRC
 TEST_CFLAGS			:=	-I${INC_DIR}
 TEST_LDFLAGS		:=	-g -fsanitize=address -I${INC_DIR}
 
-a:
-
 all: ${NAME}
 
 ${NAME}: ${OBJ}
