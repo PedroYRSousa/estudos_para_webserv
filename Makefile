@@ -68,6 +68,6 @@ install:
 	sudo apt-get install cppcheck
 
 cppcheck:
-	cppcheck . --suppress=missingInclude --enable=all -I./includes > result_cppcheck.txt 2>&1
+	cppcheck ${SRC_DIR} -i./src/test --suppress=missingInclude --enable=all -I./includes > result_cppcheck.txt 2>&1
 
 .PHONY: all run clean fclean re install cppcheck
