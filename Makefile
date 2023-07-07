@@ -10,12 +10,22 @@ CC							:=	c++
 NAME						:=	webserv
 TEST_NAME				:=	test_webserv
 
+MAIN_SRC				:= ${SRC_DIR}/main.cpp
+TEST_SRC				:= ${SRC_DIR}/test/catch.cpp
+
+SRC							:= $(wildcard $(SRC_DIR)/**/*.cpp $(SRC_DIR)/*.cpp)
+SRC							:= $(filter-out $(TEST_SRC), $(SRC))
+OBJ							:=	$(patsubst $(SRC_DIR)/%.cpp,$(OBJ_DIR)/%.o,$(SRC))
 CFLAGS					:=	-Wall -Werror -Wextra -std=c++98 -I${INC_DIR}
 LDFLAGS					:=	-Wall -Werror -Wextra -std=c++98 -g -fsanitize=address -I${INC_DIR}
 
-SRC							:=	$(wildcard $(SRC_DIR)/**/*.cpp $(SRC_DIR)/*.cpp)
-OBJ							:=	$(patsubst $(SRC_DIR)/%.cpp,$(OBJ_DIR)/%.o,$(SRC))
-TEST_OBJ				:=	$(patsubst $(SRC_DIR)/%.cpp,${TEST_DIR}/$(OBJ_DIR)/%.o,$(SRC))
+TEST_SRC				:= $(wildcard $(SRC_DIR)/**/*.cpp $(SRC_DIR)/*.cpp)
+TEST_SRC				:= $(filter-out $(MAIN_SRC), $(TEST_SRC))
+TEST_OBJ				:=	$(patsubst $(SRC_DIR)/%.cpp,${TEST_DIR}/$(OBJ_DIR)/%.o,$(TEST_SRC))
+TEST_CFLAGS			:=	-I${INC_DIR}
+TEST_LDFLAGS		:=	-g -fsanitize=address -I${INC_DIR}
+
+a:
 
 all: ${NAME}
 
@@ -31,11 +41,11 @@ test: ${TEST_NAME}
 
 ${TEST_NAME}: ${TEST_OBJ}
 	@mkdir -p ${LOG_DIR}
-	${CC} -o ${TEST_NAME} $^ ${LDFLAGS}
+	${CC} -o ${TEST_NAME} $^ ${TEST_LDFLAGS}
 
 ${TEST_DIR}/${OBJ_DIR}/%.o: ${SRC_DIR}/%.cpp
 	@mkdir -p $(dir $@)
-	${CC} -c ${CFLAGS} -DTEST_MODE=1 $< -o $@
+	${CC} -c ${TEST_CFLAGS} $< -o $@
 
 run: fclean all
 	rm -rf ${LOG_DIR}/*.txt
