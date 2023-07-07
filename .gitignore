@@ -1,5 +1,7 @@
 *.txt
 *.out
 webserv
+test_webserv
 /logs
 /obj
+/testObj
