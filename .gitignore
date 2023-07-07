@@ -1,1 +1,4 @@
 *.out
+webserv
+/logs
+/obj
