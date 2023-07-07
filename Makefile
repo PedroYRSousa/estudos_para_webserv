@@ -60,6 +60,7 @@ clean:
 fclean: clean
 	rm -rf ${NAME}
 	rm -rf ${TEST_NAME}
+	rm -rf ${LOG_DIR}
 
 re: fclean all
 
