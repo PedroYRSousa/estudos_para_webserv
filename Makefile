@@ -1,29 +1,24 @@
 # Comum
-SRC_DIR					:=	./src
-OBJ_DIR					:=	./obj
-LOG_DIR					:=	./logs
-INC_DIR					:=	./includes
-TEST_DIR				:=	./tst
+SRC_DIR					:= ./src
+OBJ_DIR					:= ./obj
+LOG_DIR					:= ./logs
+INC_DIR					:= ./includes
+TEST_DIR				:= ./testObj
 
-CC							:=	c++
+CC						:= c++
 
-NAME						:=	webserv
-TEST_NAME				:=	test_webserv
+NAME					:= webserv
+TEST_NAME				:= test_webserv
 
-MAIN_SRC				:= ${SRC_DIR}/main.cpp
-TEST_SRC				:= ${SRC_DIR}/test/catch.cpp
+SRC						:= $(wildcard $(SRC_DIR)/**/*.cpp $(SRC_DIR)/*.cpp)
 
-SRC							:= $(wildcard $(SRC_DIR)/**/*.cpp $(SRC_DIR)/*.cpp)
-SRC							:= $(filter-out $(TEST_SRC), $(SRC))
-OBJ							:=	$(patsubst $(SRC_DIR)/%.cpp,$(OBJ_DIR)/%.o,$(SRC))
-CFLAGS					:=	-Wall -Werror -Wextra -std=c++98 -I${INC_DIR}
-LDFLAGS					:=	-Wall -Werror -Wextra -std=c++98 -g -fsanitize=address -I${INC_DIR}
+OBJ						:= $(patsubst $(SRC_DIR)/%.cpp,$(OBJ_DIR)/%.o,$(SRC))
+CFLAGS					:= -Wall -Werror -Wextra -std=c++98 -I${INC_DIR}
+LDFLAGS					:= -Wall -Werror -Wextra -std=c++98 -g -fsanitize=address -I${INC_DIR}
 
-TEST_SRC				:= $(wildcard $(SRC_DIR)/**/*.cpp $(SRC_DIR)/*.cpp)
-TEST_SRC				:= $(filter-out $(MAIN_SRC), $(TEST_SRC))
-TEST_OBJ				:=	$(patsubst $(SRC_DIR)/%.cpp,${TEST_DIR}/$(OBJ_DIR)/%.o,$(TEST_SRC))
-TEST_CFLAGS			:=	-I${INC_DIR}
-TEST_LDFLAGS		:=	-g -fsanitize=address -I${INC_DIR}
+TEST_OBJ				:= $(patsubst $(SRC_DIR)/%.cpp,${TEST_DIR}/$(OBJ_DIR)/%.o,$(SRC))
+TEST_CFLAGS				:= -pthread -I${INC_DIR}
+TEST_LDFLAGS			:= -lgtest -lgtest_main -pthread -g -fsanitize=address -I${INC_DIR}
 
 all: ${NAME}
 
@@ -43,7 +38,7 @@ ${TEST_NAME}: ${TEST_OBJ}
 
 ${TEST_DIR}/${OBJ_DIR}/%.o: ${SRC_DIR}/%.cpp
 	@mkdir -p $(dir $@)
-	${CC} -c ${TEST_CFLAGS} $< -o $@
+	${CC} -c ${TEST_CFLAGS} -DTEST_MODE=1 $< -o $@
 
 run: fclean all
 	rm -rf ${LOG_DIR}/*.txt
@@ -65,7 +60,14 @@ fclean: clean
 re: fclean all
 
 install:
-	sudo apt-get install cppcheck
+	rm -rf googletest;
+	sudo apt-get update -y;
+	sudo apt-get upgrade -y;
+	sudo apt-get update -y;
+	sudo apt-get install cppcheck -y;
+	git clone https://github.com/google/googletest.git;
+	cd googletest && mkdir -p build && cd build && cmake .. && sudo make && sudo make install
+	rm -rf googletest;
 
 cppcheck:
 	cppcheck ${SRC_DIR} -i./src/test --suppress=missingInclude --enable=all -I./includes > result_cppcheck.txt 2>&1

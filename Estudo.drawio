@@ -1,0 +1,43 @@
+<mxfile host="Electron" modified="2023-07-08T02:39:43.268Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/21.5.1 Chrome/112.0.5615.204 Electron/24.6.0 Safari/537.36" etag="7mtVROkCfVEAjwpM1wvH" version="21.5.1" type="device">
+  <diagram name="Página-1" id="T9lJqxiEbs2xBpM0obvI">
+    <mxGraphModel dx="915" dy="683" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="utqgDS244uaDrYjNhPIN-5" value="HTTP GET /" style="edgeLabel;html=1;align=center;verticalAlign=bottom;resizable=0;points=[];" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="669.0003448275861" y="384.0000000000001" as="geometry" />
+        </mxCell>
+        <mxCell id="utqgDS244uaDrYjNhPIN-1" value="" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};participant=umlActor;" vertex="1" parent="1">
+          <mxGeometry x="559" y="314" width="20" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="utqgDS244uaDrYjNhPIN-2" value="Webserv (Middle)" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};" vertex="1" parent="1">
+          <mxGeometry x="719" y="314" width="100" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="utqgDS244uaDrYjNhPIN-3" value="" style="endArrow=classic;html=1;rounded=0;entryX=0;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" target="utqgDS244uaDrYjNhPIN-18">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="568.810344827586" y="384.0000000000001" as="sourcePoint" />
+            <mxPoint x="639" y="394" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="utqgDS244uaDrYjNhPIN-9" value="" style="endArrow=classic;html=1;rounded=0;exitX=0;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="761.5" y="444" as="sourcePoint" />
+            <mxPoint x="569" y="444" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="utqgDS244uaDrYjNhPIN-10" value="HTTP 200 OK" style="edgeLabel;html=1;align=center;verticalAlign=bottom;resizable=0;points=[];" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="669.0003448275861" y="444.0000000000001" as="geometry" />
+        </mxCell>
+        <mxCell id="utqgDS244uaDrYjNhPIN-18" value="request" style="rounded=0;whiteSpace=wrap;html=1;direction=east;horizontal=0;" vertex="1" parent="1">
+          <mxGeometry x="761.5" y="384" width="15" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="utqgDS244uaDrYjNhPIN-35" value="&lt;div style=&quot;&quot;&gt;&lt;div style=&quot;&quot;&gt;1 Requisição:&lt;br&gt;GET / HTTP/1.1&lt;/div&gt;&lt;div style=&quot;&quot;&gt;Host: 127.0.0.1:8080&lt;/div&gt;&lt;div style=&quot;&quot;&gt;User-Agent: insomnia/2023.4.0&lt;/div&gt;&lt;div style=&quot;&quot;&gt;Accept: */*&lt;/div&gt;&lt;div style=&quot;font-size: 12px;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;fontSize=12;spacingTop=0;spacing=10;" vertex="1" parent="1">
+          <mxGeometry x="349" y="309" width="200" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="utqgDS244uaDrYjNhPIN-36" value="&lt;div style=&quot;&quot;&gt;&lt;div style=&quot;&quot;&gt;1 Resposta:&amp;nbsp;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;HTTP/1.1 200 OK&lt;/div&gt;&lt;div style=&quot;&quot;&gt;Connection: close&lt;/div&gt;&lt;div style=&quot;&quot;&gt;Content-Length: 0&lt;/div&gt;&lt;div style=&quot;font-size: 12px;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;fontSize=12;spacingTop=0;spacing=10;" vertex="1" parent="1">
+          <mxGeometry x="349" y="419" width="200" height="100" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
