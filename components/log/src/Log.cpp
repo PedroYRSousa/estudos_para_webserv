@@ -1,4 +1,4 @@
-#include "utils/Log.hpp"
+#include "Log.hpp"
 
 // STATIC LOCAL
 static void getLocalDateTime(int *day, int *mon, int *year, int *hour, int *min, int *sec)

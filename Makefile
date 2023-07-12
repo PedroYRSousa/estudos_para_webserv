@@ -1,3 +1,10 @@
+# Components
+LOG						:= ./components/log
+LOG_INC_DIR				:= ${LOG}/includes
+LOG_LIB_DIR				:= ${LOG}
+LOG_INCLUDES			:= -I${LOG_INC_DIR}
+LOG_LIB					:= -L${LOG_LIB_DIR} -llog
+
 # Comum
 SRC_DIR					:= ./src
 OBJ_DIR					:= ./obj
@@ -6,6 +13,8 @@ INC_DIR					:= ./includes
 TEST_DIR				:= ./testObj
 
 CC						:= c++
+INCLUDES				:= -I${INC_DIR} ${LOG_INCLUDES}
+LIBS					:= ${LOG_LIB}
 
 NAME					:= webserv
 TEST_NAME				:= test_webserv
@@ -13,14 +22,14 @@ TEST_NAME				:= test_webserv
 SRC						:= $(wildcard $(SRC_DIR)/**/*.cpp $(SRC_DIR)/*.cpp)
 
 OBJ						:= $(patsubst $(SRC_DIR)/%.cpp,$(OBJ_DIR)/%.o,$(SRC))
-CFLAGS					:= -Wall -Werror -Wextra -std=c++98 -I${INC_DIR}
-LDFLAGS					:= -Wall -Werror -Wextra -std=c++98 -g -fsanitize=address -I${INC_DIR}
+CFLAGS					:= -Wall -Werror -Wextra -std=c++98 ${INCLUDES}
+LDFLAGS					:= -Wall -Werror -Wextra -std=c++98 -g -fsanitize=address ${INCLUDES} ${LIBS}
 
 TEST_OBJ				:= $(patsubst $(SRC_DIR)/%.cpp,${TEST_DIR}/$(OBJ_DIR)/%.o,$(SRC))
-TEST_CFLAGS				:= -pthread -I${INC_DIR}
-TEST_LDFLAGS			:= -lgtest -lgtest_main -pthread -g -fsanitize=address -I${INC_DIR}
+TEST_CFLAGS				:= -pthread ${INCLUDES}
+TEST_LDFLAGS			:= -lgtest -lgtest_main -pthread -g -fsanitize=address ${INCLUDES} ${LIBS}
 
-all: ${NAME}
+all: make_components ${NAME}
 
 ${NAME}: ${OBJ}
 	@mkdir -p ${LOG_DIR}
@@ -30,7 +39,7 @@ ${OBJ_DIR}/%.o: ${SRC_DIR}/%.cpp
 	@mkdir -p $(dir $@)
 	${CC} -c ${CFLAGS} $< -o $@
 
-test: ${TEST_NAME}
+test: make_components ${TEST_NAME}
 
 ${TEST_NAME}: ${TEST_OBJ}
 	@mkdir -p ${LOG_DIR}
@@ -56,8 +65,12 @@ fclean: clean
 	rm -rf ${NAME}
 	rm -rf ${TEST_NAME}
 	rm -rf ${LOG_DIR}
+	make fclean --directory="./components/log"
 
 re: fclean all
+
+make_components:
+	make --directory="./components/log"
 
 install:
 	rm -rf googletest;
@@ -72,4 +85,4 @@ install:
 cppcheck:
 	cppcheck ${SRC_DIR} -i./src/test --suppress=missingInclude --enable=all -I./includes > result_cppcheck.txt 2>&1
 
-.PHONY: all run clean fclean re install cppcheck
+.PHONY: all run clean fclean re make_components install cppcheck
